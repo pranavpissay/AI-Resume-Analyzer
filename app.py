@@ -1,6 +1,6 @@
 import streamlit as st
 from parser.parser import extract_text_from_pdf
-
+from extractor.skills import extract_skills
 # -----------------------------------
 # Page Configuration
 # -----------------------------------
@@ -52,12 +52,21 @@ if uploaded_file is not None:
         st.subheader("📄 Resume Content")
 
         resume_text = extract_text_from_pdf(uploaded_file)
-
+        detected_skills = extract_skills(resume_text)
+        
         st.text_area(
             "Extracted Text",
             resume_text,
             height=400
         )
+        st.divider()
+        st.subheader("🎯 Detected Skills")
+        if detected_skills:
+            for skill in detected_skills:
+                st.success(skill)
 
+        else:
+            st.warning("No skills detected.")
+        
     else:
         st.warning("DOCX support will be added in the next version.")
