@@ -1,6 +1,6 @@
 import streamlit as st
-from parser.parser import extract_text_from_pdf
-from extractor.skills import extract_skills
+from core.parser.pdf_parser import extract_text_from_pdf
+from core.extractor.skills import extract_skills
 # -----------------------------------
 # Page Configuration
 # -----------------------------------
